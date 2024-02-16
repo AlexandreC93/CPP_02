@@ -16,7 +16,6 @@ Fixed::Fixed( const float n ) : _fixedPointValue( roundf( n * ( 1 << _fractional
 
 Fixed::Fixed( const Fixed &copy ) {
     // std::cout << "Copy constructor called" << std::endl;
-    // this->setRawBits(copy.getRawBits());
     *this = copy;
 }
 
@@ -52,8 +51,6 @@ std::ostream & operator<<( std::ostream & o, Fixed const & i ) {
     return o;
 }
 
-//----------------- Comparison operators -----------------//
-
 bool    Fixed::operator>( const Fixed &copy ) const {
     return this->getRawBits() > copy.getRawBits();
 }
@@ -78,8 +75,6 @@ bool    Fixed::operator!=( const Fixed &copy ) const {
     return this->getRawBits() != copy.getRawBits();
 }
 
-//------------------ Arithmetic operators ------------------//
-
 Fixed   Fixed::operator+( const Fixed &copy ) const {
     return Fixed( this->toFloat() + copy.toFloat() );
 }
@@ -95,8 +90,6 @@ Fixed   Fixed::operator*( const Fixed &copy ) const {
 Fixed   Fixed::operator/( const Fixed &copy ) const {
     return Fixed( this->toFloat() / copy.toFloat() );
 }
-
-//------------------ Increment/Decrement operators ------------------//
 
 Fixed&   Fixed::operator++( void ) {
     ++this->_fixedPointValue;
@@ -117,10 +110,8 @@ Fixed& Fixed::operator--( void ) {
 Fixed Fixed::operator--( int ) {
     Fixed tmp( *this );
     tmp._fixedPointValue = this->_fixedPointValue--;
-    return tmp;
+    return tmp; //post
 }
-
-//----------------------- Max and Min ----------------------//
 
 Fixed& Fixed::min( Fixed &a, Fixed &b ) {
     if ( a.getRawBits() < b.getRawBits() )

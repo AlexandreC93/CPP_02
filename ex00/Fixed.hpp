@@ -11,8 +11,8 @@ private:
 
 public:
     Fixed();
-    Fixed( const Fixed &rhs );
-    Fixed& operator=( const Fixed &rhs );
+    Fixed( const Fixed &copy );
+    Fixed& operator=( const Fixed &copy );
     ~Fixed();
 
     int     getRawBits( void ) const;
@@ -20,5 +20,3 @@ public:
 };
 
 #endif 
-
-//SYNTAX
